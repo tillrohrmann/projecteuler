@@ -2,21 +2,21 @@
 object Solution19 {
   def main(args: Array[String]): Unit = {
     var currentDay = 1
-    val list = for(year <- 1900 until 2000; month <- 1 to 12) yield {
+    val list = for(year <- 1900 to 2000; month <- 1 to 12) yield {
       currentDay = (currentDay + getNumberOfDays(month, year)) % 7
       currentDay
     }
 
     val days = 1 :: list.toList
-
-    println(days.filter(_ == 0).length)
+    println(days.drop(12).grouped(12).zipWithIndex.mkString("\n"))
+    println(days.drop(12).filter(_ == 0).length)
   }
 
   def getNumberOfDays(month: Int, year: Int): Int = {
-    if(year == 2)
+    if(month == 2)
       if(isLeapYear(year)) 29 else 28
     else{
-      if(year == 4 || year == 6 || year == 9 || year == 11){
+      if(month == 4 || month == 6 || month == 9 || month == 11){
         30
       }else {
         31
