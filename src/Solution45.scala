@@ -4,7 +4,7 @@ object Solution45 {
   def main(args: Array[String]): Unit = {
     val result = findTriangleNumber((286, 166, 144))
 
-    println(result)
+    println(result + " " + t(result._1))
   }
 
   def findTriangleNumber(start: (Long, Long, Long)): (Long, Long, Long) = {
