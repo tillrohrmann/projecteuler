@@ -1,14 +1,14 @@
 
 object Helper {
-  val primes = collection.mutable.Set[Int]()
-  var maxPrime = 0
-  def isPrime(n: Int): Boolean = {
+  val primes = collection.mutable.Set[Long]()
+  var maxPrime = 0l
+  def isPrime(n: Long): Boolean = {
     if(primes.contains(n)){
       true
     }else{
-      val max = math.floor(math.sqrt(n)).toInt
+      val max = math.floor(math.sqrt(n)).toLong
 
-      if((2 to max) forall  (n % _ != 0)){
+      if((2l to max) forall  (n % _ != 0)){
         primes += n
         if(maxPrime < n) {
           maxPrime = n
@@ -67,5 +67,9 @@ object Helper {
     }
 
     result
+  }
+
+  def numberFromDigits(digits: List[Int]): Long = {
+    digits.foldLeft(0l)((result, digit) => result*10 + digit)
   }
 }
