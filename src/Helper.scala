@@ -5,7 +5,7 @@ object Helper {
   def isPrime(n: Long): Boolean = {
     if(primes.contains(n)){
       true
-    }else{
+    }else if(n > 1){
       val max = math.floor(math.sqrt(n)).toLong
 
       if((2l to max) forall  (n % _ != 0)){
@@ -17,6 +17,8 @@ object Helper {
       }else{
         false
       }
+    } else {
+      false
     }
   }
 
@@ -69,7 +71,23 @@ object Helper {
     result
   }
 
+  def digits(number: BigInt): List[Int] = {
+    var result = List[Int]()
+    var n = if(number < 0) -number else number
+
+    while(n >0 ){
+      result ::= (n % 10).toInt
+      n /= 10
+    }
+
+    result
+  }
+
   def numberFromDigits(digits: List[Int]): Long = {
     digits.foldLeft(0l)((result, digit) => result*10 + digit)
+  }
+
+  def bigIntFromDigits(digits: List[Int]): BigInt = {
+    BigInt(digits.mkString(""))
   }
 }
